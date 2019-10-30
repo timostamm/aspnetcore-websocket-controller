@@ -11,7 +11,7 @@
         <PackageProjectUrl>https://github.com/timostamm/aspnetcore-websocket-controller</PackageProjectUrl>
         <RepositoryUrl>git@github.com:timostamm/aspnetcore-websocket-controller.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageLicense>MIT</PackageLicense>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>

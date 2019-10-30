@@ -1,5 +1,5 @@
-websocket-controller
-====================
+aspnetcore-websocket-controller
+===============================
 
 Easy WebSockets for AspNetCore 3.0.
 
