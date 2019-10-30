@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <style type="text/css">
+        input[name=text] {
+            font-size: 1.2rem;
+            width: 90%;
+            margin-bottom: 20px;
+        }
+
+        div#output {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+
+<form onsubmit="onSubmit(event)">
+    <input type="text" name="text" placeholder="enter message and hit enter" autocomplete="off">
+</form>
+
+<div id="output" style="">
+</div>
+
+
+<script type="application/javascript">
+
+    var webSocket = new WebSocket("ws://localhost:5000/ws-chat");
+
+    webSocket.onmessage = function (event) {
+        var output = document.getElementById('output');
+        output.textContent = event.data + "\n" + output.textContent;
+    };
+
+    function onSubmit(event) {
+        event.preventDefault();
+        var input = event.target.elements.namedItem('text');
+        webSocket.send(input.value);
+        input.value = "";
+    }
+
+</script>
+
+</body>
+</html>

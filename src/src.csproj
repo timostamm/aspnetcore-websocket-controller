@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <RootNamespace>TimoStamm.WebSockets.Controller</RootNamespace>
+        <AssemblyName>TimoStamm.WebSockets.Controller</AssemblyName>
+        <PackageId>TimoStamm.WebSockets.Controller</PackageId>
+        <Authors>ts@timostamm.de</Authors>
+        <Company>timostamm.de</Company>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+    
+</Project>
