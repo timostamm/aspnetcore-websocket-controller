@@ -4,6 +4,8 @@ aspnetcore-websocket-controller
 Easy WebSockets for AspNetCore 3.0.
 
 
+Run `dotnet add package TimoStamm.WebSockets.Controller` to install.
+
 Implement your websocket controller:
 ````c#
 public class MyController : AWebsocketController
