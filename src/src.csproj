@@ -7,6 +7,10 @@
         <PackageId>TimoStamm.WebSockets.Controller</PackageId>
         <Authors>ts@timostamm.de</Authors>
         <Company>timostamm.de</Company>
+        <Title>Easy WebSockets for AspNetCore 3.0</Title>
+        <PackageProjectUrl>https://github.com/timostamm/aspnetcore-websocket-controller</PackageProjectUrl>
+        <RepositoryUrl>git@github.com:timostamm/aspnetcore-websocket-controller.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
     </PropertyGroup>
 
     <ItemGroup>
