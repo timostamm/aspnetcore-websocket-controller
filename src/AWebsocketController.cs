@@ -6,7 +6,7 @@ namespace TimoStamm.WebSockets.Controller
 {
     public abstract class AWebsocketController : IWebsocketController
     {
-        public async Task<Client> OnWebSocketRequest(HttpContext context)
+        public virtual async Task<Client> OnWebSocketRequest(HttpContext context)
         {
             var socket = await context.WebSockets.AcceptWebSocketAsync();
             return new Client(socket, context);
