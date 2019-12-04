@@ -45,8 +45,8 @@ namespace TimoStamm.WebSockets.Controller
             }
 
             var cancel = context.RequestAborted;
-            var socket = await context.WebSockets.AcceptWebSocketAsync();
-            var client = new Client(socket, context);
+            var client = await _controller.OnWebSocketRequest(context);
+            var socket = client.WebSocket;
 
             _clients.TryAdd(context.TraceIdentifier, client);
             

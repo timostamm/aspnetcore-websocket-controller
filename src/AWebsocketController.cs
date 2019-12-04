@@ -1,10 +1,17 @@
 using System.Net.WebSockets;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace TimoStamm.WebSockets.Controller
 {
     public abstract class AWebsocketController : IWebsocketController
     {
+        public async Task<Client> OnWebSocketRequest(HttpContext context)
+        {
+            var socket = await context.WebSockets.AcceptWebSocketAsync();
+            return new Client(socket, context);
+        }
+
         public virtual Task OnOpen(Client client)
         {
             return Task.CompletedTask;

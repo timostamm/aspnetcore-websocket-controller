@@ -26,6 +26,13 @@ namespace example
                 var handler = WebSocketHandler.CreateFor<ChatController>(app.ApplicationServices);
                 a.Run(handler.HandleRequest);
             });
+            
+            app.Map("/ws-my", a =>
+            {
+                var handler = WebSocketHandler.CreateFor<MyController>(app.ApplicationServices);
+                a.Run(handler.HandleRequest);
+            });
+            
         }
     }
 }
