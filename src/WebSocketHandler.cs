@@ -43,17 +43,33 @@ namespace TimoStamm.WebSockets.Controller
                 await HandleNotWebSocket(context);
                 return;
             }
-
-            var cancel = context.RequestAborted;
-            var client = await _controller.OnWebSocketRequest(context);
-            var socket = client.WebSocket;
-
-            _clients.TryAdd(context.TraceIdentifier, client);
             
-            _logger.LogDebug($"Client id \"{client.Id}\" connected ({_clients.Count} total).");
+            var cancel = context.RequestAborted;
+            
+            Client client;
+            try
+            {
+                client = await _controller.OnWebSocketRequest(context);
+            }
+            catch (OperationCanceledException ex)
+            {
+                _logger.LogDebug($"Request aborted: {ex.Message}");
+                return;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Failed to accept websocket request: {ex.Message}");
+                return;
+            }
+
+            using var socket = client.WebSocket;
 
             try
             {
+                _clients.TryAdd(context.TraceIdentifier, client);
+                
+                _logger.LogDebug($"Client id \"{client.Id}\" connected ({_clients.Count} total).");
+
                 await _controller.OnOpen(client);
 
                 while (socket.State == WebSocketState.Open)
@@ -92,9 +108,12 @@ namespace TimoStamm.WebSockets.Controller
             catch (OperationCanceledException ex)
             {
                 _logger.LogDebug($"Client id \"{client.Id}\" request aborted: {ex.Message}");
+            } 
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error during websocket life cycle of client id \"{client.Id}\": {ex.Message}");
             }
 
-            socket.Dispose();
         }
 
 
